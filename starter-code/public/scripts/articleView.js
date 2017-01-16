@@ -4,8 +4,8 @@
 // Pass in to the IIFE a module, upon which objects can be attached for later access.
 
 
-(function(){
-  const articleView = {};
+// (function(module){
+  var articleView = {};
   articleView.populateFilters = function() {
     $('article').each(function() {
       if (!$(this).hasClass('template')) {
@@ -121,4 +121,5 @@
     $('#blog-stats .words').text(Article.numWordsAll());
     return template(this);
   };
-}(jQuery,window)); // finish IIFE
+// 
+// }(window)); // finish IIFE
