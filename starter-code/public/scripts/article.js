@@ -72,18 +72,24 @@ Article.numWordsAll = () => {
 };
 
 // DONE: Chain together a `map` and a `reduce` call to produce an array of unique author names.
+// Article.allAuthors = () => {
+//   return Article.all.map(ele => ele.author).reduce(function(p,e){ if(e != p.indexOf(e)) p.push(e);return p;},[]);
+// };
+
 Article.allAuthors = () => {
-  return Article.all.map(ele=>ele.author).reduce(function(p,e){ if(e != p.indexOf(e)) p.push(e);return p;},[]);
+  return Article.all.map(ele => ele.author).reduce(function(p,e){ if(p.indexOf(e)<0) p.push(e);return p;},[]);
 };
+
+
 
 Article.numWordsByAuthor = () => {
   return Article.allAuthors().map(author => {
     // DONE: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
+      // console.log(author);
     return {
       name: author,// DONE: Complete the value for this object property
-      // name: author,
       numWords: Article.all.filter(function(item){
         return item.author == author;
       } ).map(function(blog,index,array){return blog.body.split(' ').length;}).reduce(function(total,ele){return total+ele}) // DONE: Complete these three FP methods.
