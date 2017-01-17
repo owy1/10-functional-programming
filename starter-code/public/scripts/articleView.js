@@ -3,8 +3,7 @@
 // DONE: Wrap the entire contents of this file in an IIFE.
 // Pass in to the IIFE a module, upon which objects can be attached for later access.
 
-
-// (function(module){
+(function(module){
   var articleView = {};
   articleView.populateFilters = function() {
     $('article').each(function() {
@@ -115,11 +114,11 @@
   // appending to the DOM.
   // The callback is not required to return anything.
     Article.numWordsByAuthor().forEach(stat => $('.author-stats').append(template(stat)));
-
   // REVIEW: Simply write the correct values to the page:
     $('#blog-stats .articles').text(Article.all.length);
     $('#blog-stats .words').text(Article.numWordsAll());
     return template(this);
   };
-// 
-// }(window)); // finish IIFE
+
+module.articleView = articleView;
+}(window)); // finish IIFE

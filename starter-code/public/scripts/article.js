@@ -6,7 +6,7 @@
 // Pass in to the IIFE a module, upon which objects can be attached for later access.
 
 
-// (function (module){
+(function (module){
 
 function Article(opts) {
   // REVIEW: Lets review what's actually happening here, and check out some new syntax!!
@@ -81,15 +81,17 @@ Article.numWordsByAuthor = () => {
     // DONE: Transform each author string into an object with properties for
     // the author's name, as well as the total number of words across all articles
     // written by the specified author.
-    return ({
-      name: console.log(name), author,// DONE: Complete the value for this object property
+    return {
+      name: author,// DONE: Complete the value for this object property
+      // name: author,
       numWords: Article.all.filter(function(item){
         return item.author == author;
       } ).map(function(blog,index,array){return blog.body.split(' ').length;}).reduce(function(total,ele){return total+ele}) // DONE: Complete these three FP methods.
-    })
+    }
   })
 };
 
+// console.log(Article.numWordsByAuthor());
 Article.truncateTable = callback => {
   $.ajax({
     url: '/articles/truncate',
@@ -132,5 +134,5 @@ Article.prototype.updateRecord = function(callback) {
     .then(console.log)
     .then(callback);
   };
-
-// }(window)); // finish IIFE
+module.Article = Article;
+}(window)); // finish IIFE
